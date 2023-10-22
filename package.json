@@ -1,0 +1,21 @@
+{
+  "name": "regex-rename",
+  "version": "1.0.0",
+  "description": "Rename files using regular expressions",
+  "type": "module",
+  "bin": {
+    "rename": "./rename.js"
+  },
+  "main": "rename.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "^3.0.3"
+  },
+  "dependencies": {
+    "commander": "^11.1.0"
+  }
+}
