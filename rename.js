@@ -11,11 +11,10 @@ program
   .description('Rename files using js regular expressions')
   .version('1.0.0')
   .argument('<regex>', 'Regular expression to search for.', (s) => {
-    if (program.opts().replaceAll) {
-      return new RegExp(s, 'g');
-    } else {
-      return new RegExp(s);
-    }
+    let flags = ''
+    if (program.opts().replaceAll) flags += 'g'
+    if (program.opts().ignoreCase) flags += 'i'
+    return new RegExp(s, flags);
   })
   .argument(
     '<replacement>',
@@ -25,6 +24,7 @@ program
   .option('-f, --force', 'Overwrite files if name already exists')
   .option('-p, --dry-run', "Don't rename files")
   .option('-a, --replace-all', 'Replace all ocurrances.')
+  .option('-i, --ignore-case', 'Regex ignores case.')
   .option('-q, --quiet', 'Supress messages.')
   .action(async (regex, replacement, dir, opts) => {
     const replaceFunction = opts.replaceAll
