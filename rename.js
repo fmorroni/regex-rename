@@ -21,7 +21,10 @@ program
   )
   .argument('[directory]', 'Rename files in this directory.', './')
   .option('-f, --force', 'Overwrite files if name already exists')
-  .option('-p, --dry-run', "Show what changes would be made without actually renaming files.")
+  .option(
+    '-p, --dry-run',
+    'Show what changes would be made without actually renaming files.'
+  )
   .option(
     '-a, --replace-all',
     'Replace (or insert before/after) all ocurrances.'
@@ -60,6 +63,7 @@ program
       const files = new Set(await fsPromises.readdir(dir));
       const newFiles = new Set();
       let noMatches = true;
+      if (opts.dryRun) print('Dry run:\n');
       for (const file of files) {
         const newName = renameFunction(file, regex, replacement);
         if (newName !== file) {
